@@ -16,7 +16,7 @@ public class LoginTest extends ParentTest {
         loginPage.enterPass("111");
         loginPage.clickOnSubmitButton();
 
-        checkAC("Url is not valid", webDriver.getCurrentUrl() == "https://crm.poehalisnami.ua/", false);
+        checkAC("Url is not valid", webDriver.getCurrentUrl() == "https://crm.poehalisnami.ua", false);
         checkAC("User-Name is not  present", homePage.isUserNamePresent(), true);
         checkAC("Login box is  presen", loginPage.isLoginForm(), false);
     }

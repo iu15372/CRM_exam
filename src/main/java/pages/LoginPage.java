@@ -26,8 +26,8 @@ public class LoginPage extends ParentPage {
 
 
     public LoginPage(WebDriver webDriver) {
-        super(webDriver, "https://crm.poehalisnami.ua/User/Login?ReturnUrl=%2f");
-
+        super(webDriver, "/User/Login?ReturnUrl=%2f");
+        homePage = new HomePage(webDriver);
     }
 
     /**
