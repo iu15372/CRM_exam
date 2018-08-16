@@ -13,8 +13,11 @@ public class HomePage extends ParentPage {
     @FindBy(id = "user-name")
     private WebElement userName;
 
+    @FindBy(xpath=".//*[@id='left-nav']/a[1]")
+    private WebElement menyActivity;
+
     public HomePage(WebDriver webDriver) {
-        super(webDriver, "");
+        super(webDriver,"");
     }
 
     /**
@@ -23,5 +26,9 @@ public class HomePage extends ParentPage {
     public boolean isUserNamePresent() {
         return actionWithOurElement.isElementDisplay(userName);
 
+    }
+
+    public void clickOnMenuActivity() {
+        actionWithOurElement.clickOnElement(menyActivity);
     }
 }
