@@ -7,26 +7,32 @@ import org.openqa.selenium.support.FindBy;
 public class ActivityPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@id='btnActivityClose']")
-    private WebElement ButtonActivityClose;
+    private WebElement buttonActivityClose;
 
-    @FindBy(name = "add_action")
+    @FindBy(xpath = ".//*[@id='page-title']/div[1]/button[1]")
     private WebElement buttonActivityCreate;
 
 
     public ActivityPage(WebDriver webDriver) {
         super(webDriver, "/activity/list");
-    }
+
+        }
 
     public void deletingActivityWithName(String nameOfActivity) {
         while (isActivityInList(nameOfActivity)) {
             clickOnActivity(nameOfActivity);
             clickButtonActivityClose();
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             logger.info("Activity with name " + nameOfActivity + " was deleted");
         }
     }
 
     private void clickButtonActivityClose() {
-        actionWithOurElement.clickOnElement(ButtonActivityClose);
+        actionWithOurElement.clickOnElement(buttonActivityClose);
     }
 
     private void clickOnActivity(String nameOfActivity) {

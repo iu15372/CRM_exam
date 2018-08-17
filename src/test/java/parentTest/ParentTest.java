@@ -1,7 +1,10 @@
 package parentTest;
 
+import libs.ConfigProperties;
 import libs.Utils;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
+import org.eclipse.jetty.xml.ConfigurationProcessorFactory;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,17 +12,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import pages.ActivityPage;
-import pages.CreateActivityPage;
-import pages.HomePage;
-import pages.LoginPage;
+import pages.*;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 /**
  * @author Tabel Anastasia
- * ParentTest- "родительский" тест для всех Тестов
+ * @ParentTest - "родительский" тест для всех Тестов
  */
 public class ParentTest {
     protected WebDriver webDriver;
@@ -28,6 +28,9 @@ public class ParentTest {
     protected HomePage homePage;
     protected ActivityPage activityPage;
     protected CreateActivityPage createActivityPage;
+    protected EditActivityPage editActivityPage;
+    protected static ConfigProperties configProperties
+            = ConfigFactory.create(ConfigProperties.class);
 
     String browser = System.getProperty("browser");
 
@@ -41,6 +44,7 @@ public class ParentTest {
         homePage = new HomePage(webDriver);
         activityPage = new ActivityPage(webDriver);
         createActivityPage = new CreateActivityPage(webDriver);
+        editActivityPage = new EditActivityPage(webDriver);
     }
 
     /**

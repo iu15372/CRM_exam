@@ -12,12 +12,13 @@ public class CreateActivityPage extends ParentPage{
     @FindBy(xpath = ".//*[@id='ActivityInfo_Description']")
     private WebElement spareActivityInfoDescription;
 
-    @FindBy(name="activity")
+    @FindBy(xpath=".//*[@id='left-nav']/a[1]")
     private WebElement menyActivity;
 
     public CreateActivityPage(WebDriver webDriver) {
         super(webDriver, "/activity/create");
     }
+
     public void clickButtonActivitySave() {
         actionWithOurElement.clickOnElement(buttenActivitySave);
     }

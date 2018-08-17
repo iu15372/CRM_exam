@@ -24,6 +24,9 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//*[@id='signin_submit']")
     private WebElement submitButton;
 
+    @FindBy(xpath = ".//*[@id='loginform']")
+    private WebElement isLoginForm;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver, "/User/Login?ReturnUrl=%2f");
@@ -35,7 +38,7 @@ public class LoginPage extends ParentPage {
      */
     public void openPage() {
         try {
-            webDriver.get(baseUrl);
+            webDriver.get(baseUrl + "/User/Login?ReturnUrl=%2f");
             cheekCurrentUrl();
             logger.info("Login Page was opened");
         } catch (Exception e) {
@@ -43,8 +46,7 @@ public class LoginPage extends ParentPage {
             Assert.fail("Can not open LoginPage");
         }
     }
-
-    /**
+       /**
      * @param login
      * @Metod enterLogin - метод для ввода данных "login"
      */
