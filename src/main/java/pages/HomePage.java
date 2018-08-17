@@ -17,7 +17,7 @@ public class HomePage extends ParentPage {
     private WebElement menyActivity;
 
     public HomePage(WebDriver webDriver) {
-        super(webDriver,"");
+        super(webDriver,"/");
     }
 
     /**
