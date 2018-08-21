@@ -4,7 +4,6 @@ import libs.ConfigProperties;
 import libs.Utils;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
-import org.eclipse.jetty.xml.ConfigurationProcessorFactory;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

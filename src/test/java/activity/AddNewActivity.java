@@ -5,7 +5,7 @@ import org.junit.Test;
 import parentTest.ParentTest;
 
 public class AddNewActivity extends ParentTest {
-    final String nameOfActivity = "test_16_08_2018";
+    final String nameOfActivity = "test1_16_08_2018";
 
     @Test
     public void addNewActivity() {

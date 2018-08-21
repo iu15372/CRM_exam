@@ -21,10 +21,8 @@ public class EditActivityPage extends ParentPage {
     public EditActivityPage(WebDriver webDriver) {
         super(webDriver, "/activity/edit/");
     }
-
     public void clickOnMenuActivity() {
         actionWithOurElement.clickOnElement(menyActivity);
-
     }
     public void clickButtonActivitySave() {
         actionWithOurElement.clickOnElement(buttenActivitySave);
@@ -32,7 +30,6 @@ public class EditActivityPage extends ParentPage {
     public void clickButtonActivitySaveAndClose() {
         actionWithOurElement.clickOnElement(buttenActivitySaveAndClose);
     }
-
     public void enterActivityInfoDescription(String nameOfSpare) {
         actionWithOurElement.enterTextToElement(enterActivityInfoDescription, nameOfSpare);
     }

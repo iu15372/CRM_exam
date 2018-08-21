@@ -10,9 +10,29 @@ import java.io.IOException;
 import java.util.Map;
 
 public class EditActivityTest extends ParentTest {
-    final String nameOfActivity = "test";
+    final String nameOfActivity = "test2";
 
-// не работает??????   хотя такой же как и addNewActivity (но с вібором логина и пароля)
+    @Test
+    public void addNewActivity() {
+        loginPage.userValidLogIn("МенеджерМенеджер", "111");
+        homePage.cheekCurrentUrl();
+        homePage.clickOnMenuActivity();
+        activityPage.cheekCurrentUrl();
+        activityPage.deletingActivityWithName(nameOfActivity);
+        activityPage.clickOnButtonCreate();
+        createActivityPage.cheekCurrentUrl();
+        createActivityPage.enterActivityInfoDescription(nameOfActivity);
+        createActivityPage.clickButtonActivitySave();
+        editActivityPage.clickOnMenuActivity();
+        activityPage.cheekCurrentUrl();
+
+        checkAC("New Activity wasn't added",
+                activityPage.isNewActivityAdded(nameOfActivity),
+                true);
+   }
+
+
+    // не работает??????   хотя такой же как и addNewActivity (но с вібором логина и пароля)
     @Test
     public void editActivityTest() throws IOException {
         Utils utils = new Utils();
