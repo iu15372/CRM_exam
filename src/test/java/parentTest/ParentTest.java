@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 public class ParentTest {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
+
     protected LoginPage loginPage;
     protected HomePage homePage;
     protected ActivityPage activityPage;
@@ -44,6 +45,9 @@ public class ParentTest {
         activityPage = new ActivityPage(webDriver);
         createActivityPage = new CreateActivityPage(webDriver);
         editActivityPage = new EditActivityPage(webDriver);
+
+
+
     }
 
     /**
