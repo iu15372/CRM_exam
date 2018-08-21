@@ -22,11 +22,9 @@ public class CreateActivityPage extends ParentPage{
     public void clickButtonActivitySave() {
         actionWithOurElement.clickOnElement(buttenActivitySave);
     }
-
     public void enterActivityInfoDescription(String nameOfSpare) {
         actionWithOurElement.enterTextToElement(spareActivityInfoDescription, nameOfSpare);
     }
-
     public void clickOnMenuActivity() {
         actionWithOurElement.clickOnElement(menyActivity);
     }

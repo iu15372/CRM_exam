@@ -13,22 +13,27 @@ public class HomePage extends ParentPage {
     @FindBy(id = "user-name")
     private WebElement userName;
 
-    @FindBy(xpath=".//*[@id='left-nav']/a[1]")
+    @FindBy(xpath = ".//*[@id='left-nav']/a[1]")
     private WebElement menyActivity;
 
-    public HomePage(WebDriver webDriver) {
-        super(webDriver,"/");
-    }
+    @FindBy(xpath = ".//*[@id='user-name']/div/a")
+    private WebElement logOutButton;
 
+    public HomePage(WebDriver webDriver) {
+        super(webDriver, "/");
+    }
     /**
      * @Metod isUserNamePresent - метод проверяет наличие User-name
      */
     public boolean isUserNamePresent() {
         return actionWithOurElement.isElementDisplay(userName);
-
     }
 
     public void clickOnMenuActivity() {
         actionWithOurElement.clickOnElement(menyActivity);
+    }
+
+    public void clickOnlogOutButton() {
+        actionWithOurElement.clickOnElement(logOutButton);
     }
 }
