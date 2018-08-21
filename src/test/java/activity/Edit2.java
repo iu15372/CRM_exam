@@ -29,7 +29,7 @@ public class Edit2 extends ParentTest {
         Thread.sleep(second*1000);
         rightClick(webDriver.findElement(By.xpath(".//*//td[text()='" + nameOfActivity + "']")));
         Thread.sleep(second*1000);
-        WebElement element1Edit = webDriver.findElement(By.xpath(".//*[@id='UserActionList_EditEntity_636703755560221601']/div/nobr"));
+        WebElement element1Edit = webDriver.findElement(By.xpath("html/body/div[9]/ul/li[1]/div"));
         element1Edit.click();
         editActivityPage.enterActivityInfoDescription(" edit");
         editActivityPage.clickButtonActivitySave();
