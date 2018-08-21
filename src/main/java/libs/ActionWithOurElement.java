@@ -150,13 +150,6 @@ public class ActionWithOurElement {
             Assert.fail(String.format("%s - is not expected state", neededState));
         }
     }
-// ДОПИСАТЬ 
-//    private void setCheckBoxCheck (WebElement webElement,String  neededState){
-//        if(webElement.isSelected() && "check".equals(neededState)) {   // webElement is check
-//            logger.info("CheckBox is olready checked");
-//        } else if (webElement.isSelected() && "uncheck".equals(neededState)) {// webElement isn`t check
-//            clickOnElement(webElement);
-//            logger.info("CheckBox is checked");
-//    }
+
 
 }
