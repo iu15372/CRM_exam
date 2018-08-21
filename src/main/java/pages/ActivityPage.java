@@ -12,12 +12,16 @@ public class ActivityPage extends ParentPage {
     @FindBy(xpath = ".//*[@id='page-title']/div[1]/button[1]")
     private WebElement buttonActivityCreate;
 
+    @FindBy(xpath = ".//*[@id='btnEditActivity']")
+    private WebElement buttonActivityEdit;
+
+    @FindBy(xpath = ".//*[@key='EditEntity']")
+    private WebElement buttonActivityContextMenu;
 
     public ActivityPage(WebDriver webDriver) {
         super(webDriver, "/activity/list");
 
         }
-
     public void deletingActivityWithName(String nameOfActivity) {
         while (isActivityInList(nameOfActivity)) {
             clickOnActivity(nameOfActivity);
@@ -30,24 +34,27 @@ public class ActivityPage extends ParentPage {
             logger.info("Activity with name " + nameOfActivity + " was deleted");
         }
     }
-
+    public void clickContextMenu(){
+        actionWithOurElement.clickOnElement(buttonActivityContextMenu);
+    }
     private void clickButtonActivityClose() {
         actionWithOurElement.clickOnElement(buttonActivityClose);
     }
 
-    private void clickOnActivity(String nameOfActivity) {
+    public void clickOnActivity(String nameOfActivity) {
         actionWithOurElement.clickOnElement(".//*[text()='" + nameOfActivity + "']");
     }
-
     private boolean isActivityInList(String nameOfActivity) {
         return actionWithOurElement.isElementInList(".//*[text()='" + nameOfActivity + "']");
     }
     public boolean isNewActivityAdded(String nameOfActivity) {
         return actionWithOurElement.isElementInList(".//*[text()='" + nameOfActivity + "']");
     }
-
     public void clickOnButtonCreate() {
         actionWithOurElement.clickOnElement(buttonActivityCreate);
+    }
+    public void clickOnButtonEdit() {
+        actionWithOurElement.clickOnElement(buttonActivityEdit);
 
     }
 }

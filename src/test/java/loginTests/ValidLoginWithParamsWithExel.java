@@ -18,12 +18,12 @@ import java.util.Collection;
  * @author Tabel Anastasia
  * @param login
  * @param pass
- * Тест с параметризированными данными
+ * Тест с параметризированными данными ч/з Exel
  */
-public class validLoginWithParamsWithExel extends ParentTest {
+public class ValidLoginWithParamsWithExel extends ParentTest {
     String login, pass;
 
-    public validLoginWithParamsWithExel(String login, String pass) {
+    public ValidLoginWithParamsWithExel(String login, String pass) {
         this.login = login;
         this.pass = pass;
     }
