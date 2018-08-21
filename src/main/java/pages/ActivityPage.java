@@ -37,7 +37,7 @@ public class ActivityPage extends ParentPage {
     public void clickContextMenu(){
         actionWithOurElement.clickOnElement(buttonActivityContextMenu);
     }
-    private void clickButtonActivityClose() {
+    public void clickButtonActivityClose() {
         actionWithOurElement.clickOnElement(buttonActivityClose);
     }
 
@@ -53,8 +53,12 @@ public class ActivityPage extends ParentPage {
     public void clickOnButtonCreate() {
         actionWithOurElement.clickOnElement(buttonActivityCreate);
     }
+
     public void clickOnButtonEdit() {
         actionWithOurElement.clickOnElement(buttonActivityEdit);
 
+    }
+    public void clickIsEditActivity (String nameOfActivity){
+        actionWithOurElement.clickOnElement(".//*//td[text()='"+nameOfActivity+"']");
     }
 }
