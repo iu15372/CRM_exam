@@ -1,10 +1,10 @@
 package libs;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -30,6 +30,7 @@ public class ActionWithOurElement {
      * @param text
      * @Metod enterTextToElement - метод для ввода текста
      */
+    @Step
     public void enterTextToElement(WebElement webElement, String text) {
         try {
             webDriverWait20.until(ExpectedConditions.visibilityOf(webElement));
@@ -45,6 +46,7 @@ public class ActionWithOurElement {
      * @param webElement
      * @Metod clickOnElement - метод для клика по WebElement
      */
+    @Step
     public void clickOnElement(WebElement webElement) {
         try {
             webDriverWait20.until(ExpectedConditions.elementToBeClickable(webElement));
@@ -59,6 +61,7 @@ public class ActionWithOurElement {
      * @param xPathLocator
      * @Metod clickOnElement - метод для клика по xPathLocator
      */
+    @Step
     public void clickOnElement(String xPathLocator) {
         try {
             webDriverWait20.until(ExpectedConditions.elementToBeClickable(By.xpath(xPathLocator)));
@@ -74,6 +77,7 @@ public class ActionWithOurElement {
      * @return
      * @Metod isElementDisplay - метод проверки показывается ли Вєб-элемент
      */
+    @Step
     public boolean isElementDisplay(WebElement webElement) {
         try {
             boolean state = webElement.isDisplayed();
@@ -89,6 +93,7 @@ public class ActionWithOurElement {
      * @param e
      * @Metod printErrorAndStopTes - метод для вывода ошибки и остановки теста
      */
+    @Step
     private void printErrorAndStopTest(Exception e) {
         logger.error("Connot work with element " + e);
         Assert.fail("Connot work with element " + e);
@@ -99,6 +104,7 @@ public class ActionWithOurElement {
      * @return
      * @Metod isElementInList - метод для поиска в списке нужного поля
      */
+    @Step
     public boolean isElementInList(String xPathLocator) {
         try {
             List<WebElement> webElementList = webDriver.findElements(By.xpath(xPathLocator));
@@ -117,6 +123,7 @@ public class ActionWithOurElement {
      * @param value
      * @Metod selectValueInDD - выбора элемента из DD
      */
+    @Step
     public void selectValueInDD(WebElement dropDownElement, String value) {
         try {
             Select select = new Select(dropDownElement);
@@ -132,6 +139,7 @@ public class ActionWithOurElement {
      * @param neededState
      * @Metod setNeedeStateToCheckBox  - "check" or "uncheck"   CheckBox
      */
+    @Step
     public void setNeedeStateToCheckBox(WebElement webElement, String neededState) {
         if ("check".equals(neededState) || "uncheck".equals(neededState)) {
             if (webElement.isSelected() && "check".equals(neededState)) {   // webElement is check
@@ -150,6 +158,60 @@ public class ActionWithOurElement {
             Assert.fail(String.format("%s - is not expected state", neededState));
         }
     }
+
+    /**
+     * @Metod rightClick  for click right button to String
+     * @param element
+     */
+    @Step
+    public void rightClick(WebElement element) {
+        try {
+            webDriverWait20.until(ExpectedConditions.elementToBeClickable(element));
+            Actions actions = new Actions(webDriver);
+            actions.contextClick(element);
+            actions.build().perform();
+
+            System.out.println("Sucessfully Right clicked on the element");
+        } catch (StaleElementReferenceException e) {
+            System.out.println("Element is not attached to the page document "
+                    + e.getStackTrace());
+        } catch (NoSuchElementException e) {
+            System.out.println("Element " + element + " was not found in DOM "
+                    + e.getStackTrace());
+        } catch (Exception e) {
+            System.out.println("Element " + element + " was not clickable "
+                    + e.getStackTrace());
+        }
+    }
+
+    /**
+     * @Metod rightClick  for click right button to String
+     * @param nameString
+     */
+    @Step
+    public void rightClick(String nameString) {
+        try {
+            webDriverWait20.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*//td[text()='" + nameString + "']")));
+            Actions actions = new Actions(webDriver);
+            actions.contextClick(webDriver.findElement(By.xpath(".//*//td[text()='" + nameString + "']")));
+            actions.build().perform();
+
+            System.out.println("Sucessfully Right clicked on the element");
+        } catch (StaleElementReferenceException e) {
+            System.out.println("Element is not attached to the page document "
+                    + e.getStackTrace());
+        } catch (NoSuchElementException e) {
+            System.out.println("Element " + nameString + " was not found in DOM "
+                    + e.getStackTrace());
+        } catch (Exception e) {
+            System.out.println("Element " + nameString + " was not clickable "
+                    + e.getStackTrace());
+        }
+    }
+
+
+
+
 
 
 }

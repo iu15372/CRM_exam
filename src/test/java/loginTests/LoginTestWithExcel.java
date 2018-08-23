@@ -44,8 +44,6 @@ public class LoginTestWithExcel extends ParentTest {
         checkAC("User-Name is  present", homePage.isUserNamePresent(), false);
         checkAC("Url is not correct", webDriver.getCurrentUrl() ==
                 "https://crm.poehalisnami.ua/User/Login?ReturnUrl=%2f", false);
-
-
-
     }
+
 }

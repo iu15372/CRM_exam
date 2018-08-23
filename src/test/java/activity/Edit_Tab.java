@@ -22,7 +22,7 @@ public class Edit_Tab extends ParentTest {
         createActivityPage.clickButtonActivitySave();
         editActivityPage.clickOnMenuActivity();
         activityPage.cheekCurrentUrl();
-        activityPage.clickIsEditActivity(nameOfActivity);
+        activityPage.clickOnActivity(nameOfActivity);
         Thread.sleep(3000);
        // String parentHandle = webDriver.getWindowHandle();
        // activityPage.clickOnButtonEdit();
