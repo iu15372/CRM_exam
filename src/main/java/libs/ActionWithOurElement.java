@@ -61,6 +61,7 @@ public class ActionWithOurElement {
      * @param xPathLocator
      * @Metod clickOnElement - метод для клика по xPathLocator
      */
+
     @Step
     public void clickOnElement(String xPathLocator) {
         try {
