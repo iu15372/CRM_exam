@@ -102,7 +102,6 @@ public class LoginPage extends ParentPage {
         homePage.cheekCurrentUrl();
     }
     /**
-     *
      * @param login
      * @param pass
      * @throws IOException
