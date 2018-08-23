@@ -1,10 +1,16 @@
 package pages;
 
+import io.qameta.allure.Step;
+import libs.ExcelDriver;
+import libs.Utils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.io.IOException;
+import java.util.Map;
 
 
 /**
@@ -27,15 +33,14 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//*[@id='loginform']")
     private WebElement isLoginForm;
 
-
     public LoginPage(WebDriver webDriver) {
         super(webDriver, "/User/Login?ReturnUrl=%2f");
         homePage = new HomePage(webDriver);
     }
-
     /**
      * @Metod openPage - метод для открытия и проверки начальной страницы
      */
+    @Step
     public void openPage() {
         try {
             webDriver.get(baseUrl + "/User/Login?ReturnUrl=%2f");
@@ -46,34 +51,34 @@ public class LoginPage extends ParentPage {
             Assert.fail("Can not open LoginPage");
         }
     }
-       /**
+    /**
      * @param login
      * @Metod enterLogin - метод для ввода данных "login"
      */
+    @Step
     public void enterLogin(String login) {
         actionWithOurElement.enterTextToElement(userNaneImput, login);
     }
-
     /**
      * @param pass
      * @Metod enterPass - метод для ввода данных "pass"
      */
+    @Step
     public void enterPass(String pass) {
         actionWithOurElement.enterTextToElement(passwordImput, pass);
     }
-
     /**
      * @Metod clickOnSubmitButton - метод для клика по кнопке "submitButton"
      */
+    @Step
     public void clickOnSubmitButton() {
         actionWithOurElement.clickOnElement(submitButton);
-
     }
-
     /**
      * @return
      * @Metod isLoginForm - метод для проверки наличия формы "loginform"
      */
+    @Step
     public boolean isLoginForm() {
         try {
             return webDriver
@@ -83,19 +88,35 @@ public class LoginPage extends ParentPage {
             return false;
         }
     }
-
     /**
      * @param login    (ONLY Valid Login)
      * @param passWord (ONLY Valid Pass)
      * @Metod userValidLogIn для проверки валидного  ввода "login" и "passWord"
      */
+    @Step
     public void userValidLogIn(String login, String passWord) {
         openPage();
         enterLogin(login);
         enterPass(passWord);
         clickOnSubmitButton();
         homePage.cheekCurrentUrl();
-
+    }
+    /**
+     * @param login
+     * @param pass
+     * @throws IOException
+     * login_R.O,pass_R.O  - руководитель офиса
+     * login_Men,pass_Men  - менеджер
+     */
+    @Step
+    public void userValidLogInExcel(String login,String pass) throws IOException {
+        Utils utils = new Utils();
+        ExcelDriver excelDriver = new ExcelDriver();
+        Map dataForValidLogin = excelDriver.getData(configProperties.DATA_FILE(), "validLogOn");
+        openPage();
+        enterLogin(dataForValidLogin.get(login).toString());
+        enterPass(dataForValidLogin.get(pass).toString());
+        clickOnSubmitButton();
     }
 
 

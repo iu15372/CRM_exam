@@ -1,5 +1,6 @@
 package parentTest;
 
+import io.qameta.allure.Step;
 import libs.ConfigProperties;
 import libs.Utils;
 import org.aeonbits.owner.ConfigFactory;
@@ -54,6 +55,7 @@ public class ParentTest {
      * @param browserName
      * @Metod initDriver - инициализация браузера  chrome, fareFox
      */
+    @Step
     private void initDriver(String browserName) {
         if (browserName == null || browserName.equals("chrome")) {
             logger.info("Chrome will be started");
@@ -82,7 +84,7 @@ public class ParentTest {
     public void tearDown() {
         webDriver.quit();
     }
-
+    @Step
     protected void checkAC(String message, boolean actual, boolean expected) {
         if (actual != expected) {
             logger.error("AC fail: " + message);

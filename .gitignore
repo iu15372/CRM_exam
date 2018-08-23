@@ -13,5 +13,6 @@ target/site
 *.iml
 *.ipr
 *.iws
+.allure
 
 
