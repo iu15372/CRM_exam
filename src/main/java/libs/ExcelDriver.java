@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.qameta.allure.Step;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -24,6 +25,7 @@ public class ExcelDriver {
 	 * are String. We should take care of value's type by himself when will use
 	 * data values in the test.
 	 */
+	@Step
 	public static Map getMultipleData(String dataFileName, String sheetName, int columnNumber) throws IOException {
 		Map<String, String> testData = new HashMap<String, String>();
 		// Create stream for reading from file
@@ -54,6 +56,7 @@ public class ExcelDriver {
       * are String. We should take care of value's type by himself when will use
       * data values in the test.
       */
+	@Step
     public static Map getData(String dataFileName, String sheetName) throws IOException {
         Map<String, String> testData = new HashMap<String, String>();
         // Create stream for reading from file
@@ -86,6 +89,7 @@ public class ExcelDriver {
 	 * are String. We should take care of value's type by himself when will use
 	 * data values in the test.
 	 */
+	@Step
 	public static Map getDataRow(String dataFileName, String sheetName) throws IOException {
 		Map<String, String> testData = new HashMap<String, String>();
 		// Create stream for reading from file

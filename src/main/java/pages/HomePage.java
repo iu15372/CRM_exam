@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 /**
  * @author Tabel Anastasia
- * Class HomePage  - главная страница сайта
+ * Class HomePage  - Site's home page
  */
 public class HomePage extends ParentPage {
 
@@ -22,17 +22,24 @@ public class HomePage extends ParentPage {
     public HomePage(WebDriver webDriver) {
         super(webDriver, "/");
     }
+
     /**
-     * @Metod isUserNamePresent - метод проверяет наличие User-name
+     * @Metod isUserNamePresent - method checks for the presence of  User-name
      */
     public boolean isUserNamePresent() {
         return actionWithOurElement.isElementDisplay(userName);
     }
 
+    /**
+     *  @Metod clickOnMenuActivity  -   for clicking on Menu Activity
+     */
     public void clickOnMenuActivity() {
         actionWithOurElement.clickOnElement(menyActivity);
     }
 
+    /**
+     *  @Metod  clickOnlogOutButton  - method for clicking the exit button
+     */
     public void clickOnlogOutButton() {
         actionWithOurElement.clickOnElement(logOutButton);
     }

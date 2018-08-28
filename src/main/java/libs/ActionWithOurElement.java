@@ -67,6 +67,7 @@ public class ActionWithOurElement {
             webDriverWait20.until(ExpectedConditions.elementToBeClickable(By.xpath(xPathLocator)));
             WebElement webElement = webDriver.findElement(By.xpath(xPathLocator));
             clickOnElement(webElement);
+            logger.info("Element was clicked ");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -126,6 +127,7 @@ public class ActionWithOurElement {
     @Step
     public void selectValueInDD(WebElement dropDownElement, String value) {
         try {
+            webDriverWait20.until(ExpectedConditions.visibilityOf(dropDownElement));
             Select select = new Select(dropDownElement);
             select.selectByValue(value);  //он сразу выберит нужный элемент
             logger.info(value + " was select in DD");
@@ -134,7 +136,7 @@ public class ActionWithOurElement {
         }
     }
 
-    /**
+     /**
      * @param webElement
      * @param neededState
      * @Metod setNeedeStateToCheckBox  - "check" or "uncheck"   CheckBox
@@ -160,15 +162,15 @@ public class ActionWithOurElement {
     }
 
     /**
+     * @param webElement
      * @Metod rightClick  for click right button to String
-     * @param element
      */
     @Step
-    public void rightClick(WebElement element) {
+    public void rightClick(WebElement webElement) {
         try {
-            webDriverWait20.until(ExpectedConditions.elementToBeClickable(element));
+            webDriverWait20.until(ExpectedConditions.elementToBeClickable(webElement));
             Actions actions = new Actions(webDriver);
-            actions.contextClick(element);
+            actions.contextClick(webElement);
             actions.build().perform();
 
             System.out.println("Sucessfully Right clicked on the element");
@@ -176,17 +178,17 @@ public class ActionWithOurElement {
             System.out.println("Element is not attached to the page document "
                     + e.getStackTrace());
         } catch (NoSuchElementException e) {
-            System.out.println("Element " + element + " was not found in DOM "
+            System.out.println("Element " + webElement + " was not found in DOM "
                     + e.getStackTrace());
         } catch (Exception e) {
-            System.out.println("Element " + element + " was not clickable "
+            System.out.println("Element " + webElement + " was not clickable "
                     + e.getStackTrace());
         }
     }
 
     /**
-     * @Metod rightClick  for click right button to String
      * @param nameString
+     * @Metod rightClick  for click right button to String
      */
     @Step
     public void rightClick(String nameString) {
@@ -209,7 +211,21 @@ public class ActionWithOurElement {
         }
     }
 
-
+    /**
+     * @Metod clearDate  - manual change date
+     * @param webElement
+     * @param text
+     */
+    @Step
+    public void clearDate(WebElement webElement, String text) {
+        try {
+            webElement.clear();
+            webElement.sendKeys(text);
+            logger.info(text + " was inputted into element Date");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
 
 
 
