@@ -1,7 +1,9 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.ActionWithOurElement;
 import libs.ConfigProperties;
+import libs.Utils;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -10,7 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 
 /**
  * @author Tabel Anastasia
- * @ParentPage - родительский класс для все страниц
+ * @ParentPage - parent class for all pages
  */
 public class ParentPage {
     Logger logger = Logger.getLogger(getClass());
@@ -21,6 +23,7 @@ public class ParentPage {
     String baseUrl;
 
     ActionWithOurElement actionWithOurElement;
+    Utils utils;
 
 
     public ParentPage(WebDriver webDriver, String expectedUrl) {
@@ -29,18 +32,20 @@ public class ParentPage {
         this.expectedUrl = baseUrl + expectedUrl;
         PageFactory.initElements(webDriver, this);
         actionWithOurElement = new ActionWithOurElement(webDriver);
+        utils = new Utils();
     }
 
     /**
-     * @Metod getCurrentUrl - возвращение адресса текущей страницы
+     * @Metod getCurrentUrl - return the address of the current page
      */
     public String getCurrentUrl() {
         return webDriver.getCurrentUrl();
     }
 
     /**
-     * @Metod cheekCurrentUrl - будем сравнивать известный Url с  тем что нужен
+     * @Metod cheekCurrentUrl - we compare the well-known Url with what is needed
      */
+    @Step
     public void cheekCurrentUrl() {
         try {
             Assert.assertEquals("Url is not expect ", expectedUrl, getCurrentUrl());

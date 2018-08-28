@@ -9,17 +9,19 @@ import java.io.IOException;
 
 public class EditActivityTest extends ParentTest {
     final String nameOfActivity = "test2";
+    final String dateOfActivity = "29082018";  // формат даты(будущие)
 
     /**
+     * @throws IOException
+     * @throws InterruptedException
      * @userValidLogInExcel(_,_)
      * "login_R.O","pass_R.O"  - руководитель офиса
      * "login_Men","pass_Men"  - менеджер
-     * @throws IOException
-     * @throws InterruptedException
      */
-    @Test
-    public void editActivityTest() throws IOException, InterruptedException {
-        loginPage.userValidLogInExcel("login_R.O","pass_R.O");
+
+      @Test
+    public void editActivityTestDate() throws IOException, InterruptedException {
+        loginPage.userValidLogInExcel("login_R.O", "pass_R.O");
         homePage.cheekCurrentUrl();
         homePage.clickOnMenuActivity();
         activityPage.cheekCurrentUrl();
@@ -27,20 +29,24 @@ public class EditActivityTest extends ParentTest {
         activityPage.clickOnButtonCreate();
         createActivityPage.cheekCurrentUrl();
         createActivityPage.enterActivityInfoDescription(nameOfActivity);
+        createActivityPage.clickOnDateBegin(dateOfActivity);
         createActivityPage.clickButtonActivitySave();
         editActivityPage.clickOnMenuActivity();
+        activityPage.selectSearchType("5");
         activityPage.cheekCurrentUrl();
         activityPage.rightClickMenu(nameOfActivity);
         editActivityPage.enterActivityInfoDescription(" edit");
         editActivityPage.clickButtonActivitySave();
         activityPage.cheekCurrentUrl();
-        checkAC("New Activity wasn't added",
+       checkAC("New Activity wasn't added",
                 activityPage.isNewActivityAdded(nameOfActivity+" edit"),
-                true);
+                false);
     }
+
     @After
-    public void deletingNewActivity() {
+    public void deletingNewActivityw() {
         activityPage.deletingActivityWithName(nameOfActivity+" edit");
+
     }
 }
 

@@ -22,7 +22,7 @@ public class LoginPage extends ParentPage {
     HomePage homePage;
 
     @FindBy(name = "Login")
-    private WebElement userNaneImput;
+    private WebElement userNameImput;
 
     @FindBy(name = "Password")
     private WebElement passwordImput;
@@ -37,6 +37,7 @@ public class LoginPage extends ParentPage {
         super(webDriver, "/User/Login?ReturnUrl=%2f");
         homePage = new HomePage(webDriver);
     }
+
     /**
      * @Metod openPage - метод для открытия и проверки начальной страницы
      */
@@ -51,32 +52,36 @@ public class LoginPage extends ParentPage {
             Assert.fail("Can not open LoginPage");
         }
     }
+
     /**
      * @param login
-     * @Metod enterLogin - метод для ввода данных "login"
+     * @Metod enterLogin -method for input "login"
      */
     @Step
     public void enterLogin(String login) {
-        actionWithOurElement.enterTextToElement(userNaneImput, login);
+        actionWithOurElement.enterTextToElement(userNameImput, login);
     }
+
     /**
      * @param pass
-     * @Metod enterPass - метод для ввода данных "pass"
+     * @Metod enterPass - method for input "pass"
      */
     @Step
     public void enterPass(String pass) {
         actionWithOurElement.enterTextToElement(passwordImput, pass);
     }
+
     /**
-     * @Metod clickOnSubmitButton - метод для клика по кнопке "submitButton"
+     * @Metod clickOnSubmitButton - method for click on  "submitButton"
      */
     @Step
     public void clickOnSubmitButton() {
         actionWithOurElement.clickOnElement(submitButton);
     }
+
     /**
      * @return
-     * @Metod isLoginForm - метод для проверки наличия формы "loginform"
+     * @Metod isLoginForm - method for  form validation "loginform"
      */
     @Step
     public boolean isLoginForm() {
@@ -88,10 +93,11 @@ public class LoginPage extends ParentPage {
             return false;
         }
     }
+
     /**
      * @param login    (ONLY Valid Login)
      * @param passWord (ONLY Valid Pass)
-     * @Metod userValidLogIn для проверки валидного  ввода "login" и "passWord"
+     * @Metod userValidLogIn -  to verify valid input "login" и "passWord"
      */
     @Step
     public void userValidLogIn(String login, String passWord) {
@@ -101,15 +107,15 @@ public class LoginPage extends ParentPage {
         clickOnSubmitButton();
         homePage.cheekCurrentUrl();
     }
+
     /**
      * @param login
      * @param pass
-     * @throws IOException
-     * login_R.O,pass_R.O  - руководитель офиса
-     * login_Men,pass_Men  - менеджер
+     * @throws IOException login_R.O,pass_R.O  - руководитель офиса
+     *                     login_Men,pass_Men  - менеджер
      */
     @Step
-    public void userValidLogInExcel(String login,String pass) throws IOException {
+    public void userValidLogInExcel(String login, String pass) throws IOException {
         Utils utils = new Utils();
         ExcelDriver excelDriver = new ExcelDriver();
         Map dataForValidLogin = excelDriver.getData(configProperties.DATA_FILE(), "validLogOn");

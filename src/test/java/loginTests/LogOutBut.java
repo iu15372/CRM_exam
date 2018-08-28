@@ -10,9 +10,9 @@ import java.util.Map;
 public class LogOutBut extends ParentTest {
 
     /**
-     * @author Tabel Anastasia
-     * @Test LogOut тест на проверку корректрости Выход из системы CRM
      * @throws IOException
+     * @author Tabel Anastasia
+     * @Test LogOut тест на проверку корректрости Выхода из системы CRM
      */
 
     @Test
@@ -20,14 +20,10 @@ public class LogOutBut extends ParentTest {
         ExcelDriver excelDriver = new ExcelDriver();
         Map dataForValidLogin = excelDriver.getData(configProperties.DATA_FILE(), "validLogOn");
 
-        loginPage.openPage();
-        loginPage.enterLogin(dataForValidLogin.get("login_Men").toString());
-        loginPage.enterPass(dataForValidLogin.get("pass_Men").toString());
-        loginPage.clickOnSubmitButton();
+        loginPage.userValidLogInExcel("login_R.O", "pass_R.O");
         homePage.cheekCurrentUrl();
         homePage.clickOnlogOutButton();
         loginPage.cheekCurrentUrl();
-
 
         checkAC("Url is not valid", webDriver.getCurrentUrl() == "https://crm.poehalisnami.ua/User/Login?ReturnUrl=%2f", false);
         checkAC("User-Name is not  present", homePage.isUserNamePresent(), false);

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,6 +26,15 @@ public class ActivityPage extends ParentPage {
     @FindBy(xpath = "html/body/div[9]/ul/li[1]/div")
     private WebElement rightClickMenuEditEntity;
 
+    @FindBy(xpath = ".//*[@id='ObjectViewMode']")
+    private WebElement typeOfViewModeActivityDD;
+
+    @FindBy(xpath = ".//*[@name='s-in']")
+    private WebElement searchInputActivity;
+
+    @FindBy(xpath = ".//*[@id='page-title']/div[2]/input[2]")
+    private WebElement serchLupa;
+
     public ActivityPage(WebDriver webDriver) {
         super(webDriver, "/activity/list");
 
@@ -37,6 +47,8 @@ public class ActivityPage extends ParentPage {
      */
     public void deletingActivityWithName(String nameOfActivity) {
         webDriverWait20 = new WebDriverWait(webDriver, 20);
+        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));
+        selectSearchType("5");
         while (isActivityInList(nameOfActivity)) {
             clickOnActivity(nameOfActivity);
             webDriverWait20.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*//td[text()='" + nameOfActivity + "']")));
@@ -48,6 +60,21 @@ public class ActivityPage extends ParentPage {
             }
             logger.info("Activity with name " + nameOfActivity + " was deleted");
         }
+    }
+
+    /**
+     * @param value value="1" -На сегодня
+     *              value="2" -Будущие действия
+     *              value="4" -Закрытые действия
+     *              value="5" -Все по офису
+     *              value="6" -Просроченные по офису
+     * @Metod for DD
+     */
+    public void selectSearchType(String value) {
+        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));
+        actionWithOurElement.selectValueInDD(typeOfViewModeActivityDD, value);
+
+
     }
 
     /**
@@ -63,18 +90,10 @@ public class ActivityPage extends ParentPage {
      * @param nameOfActivity
      * @Metod clickOnActivity
      */
+
     public void clickOnActivity(String nameOfActivity) {
         actionWithOurElement.clickOnElement(".//*[text()='" + nameOfActivity + "']");
     }
-
-//    /**
-//     * Click to Activity in table
-//     * @param nameOfActivity
-//     * @Metod clickIsEditActivity
-//     */
-//    public void clickIsEditActivity(String nameOfActivity) {
-//        actionWithOurElement.clickOnElement(".//*//td[text()='" + nameOfActivity + "']");
-//    }
 
     /**
      * there is a new Activity In List
@@ -88,7 +107,6 @@ public class ActivityPage extends ParentPage {
 
     /**
      * check if a new Activity has been Added
-     *
      * @param nameOfActivity
      * @return
      * @Metod isNewActivityAdded
@@ -99,18 +117,18 @@ public class ActivityPage extends ParentPage {
 
     /**
      * Click on button Create
-     *
-     * @Metod clickOnButtonCreate
+     * @Metod clickOnButtonCreate - method for click on   Button Create Activity
      */
+    @Step
     public void clickOnButtonCreate() {
         actionWithOurElement.clickOnElement(buttonActivityCreate);
     }
 
     /**
      * Click on button Edit
-     *
-     * @Metod clickOnButtonEdit
+     * @Metod clickOnButtonEdit - method for click on   Button Edit Activity
      */
+    @Step
     public void clickOnButtonEdit() {
         actionWithOurElement.clickOnElement(buttonActivityEdit);
     }
@@ -118,19 +136,25 @@ public class ActivityPage extends ParentPage {
 
     /**
      * right Click Menu  - Context menu
-     *
      * @param nameOfActivity
      * @throws InterruptedException
      * @Metod rightClickMenu
      */
+    @Step
     public void rightClickMenu(String nameOfActivity) throws InterruptedException {
         webDriverWait20 = new WebDriverWait(webDriver, 20);
-        int second = 2;
-        Thread.sleep(second * 1000);
+        webDriverWait20.until(ExpectedConditions.not
+                (ExpectedConditions.elementToBeClickable(By.xpath
+                        (".//*[@class='loading ui-state-default ui-state-active']"))));
+//        int second = 2;
+//        Thread.sleep(second * 1000);
         actionWithOurElement.rightClick(nameOfActivity);
 
         webDriverWait20.until(ExpectedConditions.elementToBeClickable(rightClickMenuEditEntity));
         actionWithOurElement.clickOnElement(rightClickMenuEditEntity);
 
     }
+
+
 }
+
