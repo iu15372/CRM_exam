@@ -109,6 +109,7 @@ public class ActivityPage extends ParentPage {
      * @Metod isNewActivityAdded
      */
     public boolean isNewActivityAdded(String nameOfActivity) {
+
         return actionWithOurElement.isElementInList(".//*[text()='" + nameOfActivity + "']");
     }
 
