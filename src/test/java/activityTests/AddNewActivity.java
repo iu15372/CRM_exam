@@ -1,11 +1,11 @@
-package activity;
+package activityTests;
 
 import org.junit.After;
 import org.junit.Test;
 import parentTest.ParentTest;
 
 public class AddNewActivity extends ParentTest {
-    final String nameOfActivity = "test1_28_08_2018";
+    final String nameOfActivity = "test_29_08_2018";
 
     @Test
     public void addNewActivity() {

@@ -1,4 +1,4 @@
-package activity;
+package activityTests;
 
 import org.junit.After;
 import org.junit.Test;

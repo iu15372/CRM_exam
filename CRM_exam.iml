@@ -10,6 +10,28 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: io.qameta.allure:allure-junit4:2.0-BETA13" level="project" />
+    <orderEntry type="library" name="Maven: io.qameta.allure:allure-java-commons:2.0-BETA13" level="project" />
+    <orderEntry type="library" name="Maven: io.qameta.allure:allure2-model-api:1.0-BETA6" level="project" />
+    <orderEntry type="library" name="Maven: io.qameta.allure:allure2-model-pojo:1.0-BETA6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.tika:tika-core:1.14" level="project" />
+    <orderEntry type="library" name="Maven: io.qameta.allure:allure2-model-jackson:1.0-BETA6" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.7.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.7.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.7.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.7.0" level="project" />
+    <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.8.10" level="project" />
+    <orderEntry type="library" name="Maven: org.jooq:joor:0.9.6" level="project" />
+    <orderEntry type="library" name="Maven: io.github.bonigarcia:webdrivermanager:1.4.9" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.12" level="project" />
+    <orderEntry type="library" name="Maven: com.typesafe:config:1.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.rauschig:jarchivelib:0.7.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.9" level="project" />
+    <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.9.2" level="project" />
+    <orderEntry type="library" name="Maven: com.codeborne:phantomjsdriver:1.2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.tngtech.java:junit-dataprovider:1.10.0" level="project" />
+    <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-api:3.8.1" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:1.7.21" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.11" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-server:3.12.0" level="project" />
