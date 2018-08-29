@@ -8,8 +8,8 @@ import java.io.IOException;
 
 
 public class EditActivityTest extends ParentTest {
-    final String nameOfActivity = "test2";
-    final String dateOfActivity = "30082018";  // формат даты(будущие)
+    final String nameOfActivity = "editActivityTestDate";
+    final String dateOfActivity = " 06092018";
 
     /**
      * @throws IOException
@@ -17,11 +17,13 @@ public class EditActivityTest extends ParentTest {
      * @userValidLogInExcel(_,_)
      * "login_R.O","pass_R.O"  - руководитель офиса
      * "login_Men","pass_Men"  - менеджер
+     * dateOfActivity  - ставить дату в формате 8 цифр (ддммгггг),
+     * !!! Дата больше текущей
      */
 
     @Test
     public void editActivityTestDate() throws IOException, InterruptedException {
-        loginPage.userValidLogInExcel("login_R.O", "pass_R.O");
+        loginPage.userValidLogInExcel("login_Men", "pass_Men");
         homePage.cheekCurrentUrl();
         homePage.clickOnMenuActivity();
         activityPage.cheekCurrentUrl();
@@ -39,10 +41,11 @@ public class EditActivityTest extends ParentTest {
         editActivityPage.enterActivityInfoDescription(" edit");
         editActivityPage.clickButtonActivitySave();
         activityPage.cheekCurrentUrl();
+        activityPage.selectSearchTypeDD("2");
 
         checkAC("New Activity wasn't added",
                 activityPage.isNewActivityAdded(nameOfActivity + " edit"),
-                false);
+                true);
     }
 
     @After
