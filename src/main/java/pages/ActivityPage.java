@@ -46,8 +46,8 @@ public class ActivityPage extends ParentPage {
      * @param nameOfActivity
      * @Metod deletingActivityWithName
      */
-    public void deletingActivityWithName(String nameOfActivity) {
-         selectSearchTypeDD("2");
+    public void deletingActivityWithName(String nameOfActivity,String value) {
+         selectSearchTypeDD(value);
         while (isActivityInList(nameOfActivity)) {
             clickOnActivity(nameOfActivity);
             clickButtonActivityClose();

@@ -9,6 +9,7 @@ import java.io.IOException;
 public class AddNewActivity extends ParentTest {
     final String nameOfActivity = "addNewActivity";
     final String dateOfActivity = " 06092018";
+    final String valueSearchTypeDD = "2";
 
 
     /**
@@ -16,8 +17,12 @@ public class AddNewActivity extends ParentTest {
      * @userValidLogInExcel(_,_)
      * "login_R.O","pass_R.O"  - руководитель офиса
      * "login_Men","pass_Men"  - менеджер
-     * dateOfActivity  - ставить дату в формате 8 цифр (ддммгггг),
-     * !!! дата больше текущей
+     * dateOfActivity  - ставить дату в формате 8 цифр (ддммгггг), !!! дата больше текущей
+     *  valueSearchTypeDD value="1" -На сегодня
+     *                    value="2" -Будущие действия
+     *                    value="4" -Закрытые действия
+     *                    value="5" -Все по офису
+     *                    value="6" -Просроченные по офису
      */
     @Test
     public void addNewActivity() throws IOException {
@@ -25,7 +30,7 @@ public class AddNewActivity extends ParentTest {
         homePage.cheekCurrentUrl();
         homePage.clickOnMenuActivity();
         activityPage.cheekCurrentUrl();
-        activityPage.deletingActivityWithName(nameOfActivity);
+        activityPage.deletingActivityWithName(nameOfActivity,valueSearchTypeDD);
         activityPage.clickOnButtonCreate();
         createActivityPage.cheekCurrentUrl();
         createActivityPage.enterActivityInfoDescription(nameOfActivity);
@@ -33,7 +38,7 @@ public class AddNewActivity extends ParentTest {
         createActivityPage.clickButtonActivitySave();
         editActivityPage.clickOnMenuActivity();
         activityPage.cheekCurrentUrl();
-        activityPage.selectSearchTypeDD("2");
+        activityPage.selectSearchTypeDD(valueSearchTypeDD);
 
         checkAC("New Activity wasn't added",
                 activityPage.isNewActivityAdded(nameOfActivity),
@@ -42,7 +47,7 @@ public class AddNewActivity extends ParentTest {
 
     @After
     public void deletingNewActivity() {
-        activityPage.deletingActivityWithName(nameOfActivity);
+        activityPage.deletingActivityWithName(nameOfActivity,valueSearchTypeDD);
     }
 
 
