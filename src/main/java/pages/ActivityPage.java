@@ -37,6 +37,7 @@ public class ActivityPage extends ParentPage {
 
     public ActivityPage(WebDriver webDriver) {
         super(webDriver, "/activity/list");
+        webDriverWait20 = new WebDriverWait(webDriver, 20);
 
     }
 
@@ -46,12 +47,9 @@ public class ActivityPage extends ParentPage {
      * @Metod deletingActivityWithName
      */
     public void deletingActivityWithName(String nameOfActivity) {
-        webDriverWait20 = new WebDriverWait(webDriver, 20);
-        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));
-        selectSearchType("5");
+         selectSearchTypeDD("2");
         while (isActivityInList(nameOfActivity)) {
             clickOnActivity(nameOfActivity);
-            webDriverWait20.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*//td[text()='" + nameOfActivity + "']")));
             clickButtonActivityClose();
             try {
                 Thread.sleep(3000);
@@ -70,11 +68,9 @@ public class ActivityPage extends ParentPage {
      *              value="6" -Просроченные по офису
      * @Metod for DD
      */
-    public void selectSearchType(String value) {
+    public void selectSearchTypeDD(String value) {
         webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));
         actionWithOurElement.selectValueInDD(typeOfViewModeActivityDD, value);
-
-
     }
 
     /**
@@ -92,6 +88,7 @@ public class ActivityPage extends ParentPage {
      */
 
     public void clickOnActivity(String nameOfActivity) {
+        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));
         actionWithOurElement.clickOnElement(".//*[text()='" + nameOfActivity + "']");
     }
 
@@ -146,13 +143,9 @@ public class ActivityPage extends ParentPage {
         webDriverWait20.until(ExpectedConditions.not
                 (ExpectedConditions.elementToBeClickable(By.xpath
                         (".//*[@class='loading ui-state-default ui-state-active']"))));
-//        int second = 2;
-//        Thread.sleep(second * 1000);
         actionWithOurElement.rightClick(nameOfActivity);
-
         webDriverWait20.until(ExpectedConditions.elementToBeClickable(rightClickMenuEditEntity));
         actionWithOurElement.clickOnElement(rightClickMenuEditEntity);
-
     }
 
 

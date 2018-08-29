@@ -4,12 +4,21 @@ import org.junit.After;
 import org.junit.Test;
 import parentTest.ParentTest;
 
-public class AddNewActivity extends ParentTest {
-    final String nameOfActivity = "test1_28_08_2018";
+import java.io.IOException;
 
+public class AddNewActivity extends ParentTest {
+    final String nameOfActivity = "test1_31_08_2018";
+
+
+    /**
+     * @throws IOException
+     * @userValidLogInExcel(_,_)
+     * "login_R.O","pass_R.O"  - руководитель офиса
+     * "login_Men","pass_Men"  - менеджер
+     */
     @Test
-    public void addNewActivity() {
-        loginPage.userValidLogIn("МенеджерМенеджер", "111");
+    public void addNewActivity() throws IOException {
+        loginPage.userValidLogInExcel("login_R.O", "pass_R.O");
         homePage.cheekCurrentUrl();
         homePage.clickOnMenuActivity();
         activityPage.cheekCurrentUrl();

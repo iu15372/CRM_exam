@@ -20,9 +20,11 @@ public class ActionWithOurElement {
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait20;
 
+
     public ActionWithOurElement(WebDriver webDriver) {
         this.webDriver = webDriver;
         webDriverWait20 = new WebDriverWait(webDriver, 20);
+
     }
 
     /**
@@ -32,6 +34,7 @@ public class ActionWithOurElement {
      */
     @Step
     public void enterTextToElement(WebElement webElement, String text) {
+
         try {
             webDriverWait20.until(ExpectedConditions.visibilityOf(webElement));
             webElement.click();
@@ -132,6 +135,22 @@ public class ActionWithOurElement {
             Select select = new Select(dropDownElement);
             select.selectByValue(value);  //он сразу выберит нужный элемент
             logger.info(value + " was select in DD");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+    /**
+     * @param dropDownElement
+     * @param text
+     * @Metod selectValueInDD - выбора элемента из DD
+     */
+    @Step
+    public void selectByVisibleTextInDD(WebElement dropDownElement, String text) {
+        try {
+            webDriverWait20.until(ExpectedConditions.visibilityOf(dropDownElement));
+            Select select = new Select(dropDownElement);
+            select.deselectByVisibleText(text);
+            logger.info(text + " was select in DD");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
