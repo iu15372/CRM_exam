@@ -18,7 +18,6 @@ public class EditActivityTest extends ParentTest {
      * @userValidLogInExcel(_,_)
      * "login_R.O","pass_R.O"  - руководитель офиса
      * "login_Men","pass_Men"  - менеджер
-     * dateOfActivity  - ставить дату в формате 8 цифр (ддммгггг),  !!! Дата больше текущей
      *       valueSearchTypeDD value="1" -На сегодня
      *                         value="2" -Будущие действия
      *                         value="4" -Закрытые действия
@@ -28,7 +27,8 @@ public class EditActivityTest extends ParentTest {
 
     @Test
     public void editActivityTestDate() throws IOException, InterruptedException {
-        loginPage.userValidLogInExcel("login_Men", "pass_Men");
+        //loginPage.userValidLogInExcel("login_Men", "pass_Men");
+        loginPage.userValidLogInExcel("login_R.O", "pass_R.O");
         homePage.cheekCurrentUrl();
         homePage.clickOnMenuActivity();
         activityPage.cheekCurrentUrl();
