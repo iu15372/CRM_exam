@@ -25,11 +25,16 @@ public class ParentTest {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
 
-    protected LoginPage loginPage;
-    protected HomePage homePage;
+
     protected ActivityPage activityPage;
     protected CreateActivityPage createActivityPage;
     protected EditActivityPage editActivityPage;
+    protected HomePage homePage;
+    protected LoginPage loginPage;
+    protected OpportunitystagePage opportunitystagePage;
+    protected TouristPage touristPage;
+    protected CreateTouristPage createTouristPage;
+
     protected static ConfigProperties configProperties
             = ConfigFactory.create(ConfigProperties.class);
 

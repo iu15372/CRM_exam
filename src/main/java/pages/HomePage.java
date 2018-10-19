@@ -16,8 +16,13 @@ public class HomePage extends ParentPage {
     @FindBy(xpath = ".//*[@id='left-nav']/a[1]")
     private WebElement menyActivity;
 
+    @FindBy(xpath = ".//*[@id='left-nav']/*[@href='/opportunitystage/list']")
+    private WebElement menyOpportunity;
+
     @FindBy(xpath = ".//*[@id='user-name']/div/a")
     private WebElement logOutButton;
+
+
 
     public HomePage(WebDriver webDriver) {
         super(webDriver, "/");
@@ -35,6 +40,12 @@ public class HomePage extends ParentPage {
      */
     public void clickOnMenuActivity() {
         actionWithOurElement.clickOnElement(menyActivity);
+    }
+    /**
+     * @Metod clickOnMenuOpportunity  -   for clicking on Menu Opportunity
+     */
+    public void clickOnMenuOpportunity(){
+        actionWithOurElement.clickOnElement(menyOpportunity);
     }
 
     /**

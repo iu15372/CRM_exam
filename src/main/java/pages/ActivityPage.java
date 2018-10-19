@@ -46,6 +46,7 @@ public class ActivityPage extends ParentPage {
      * @param nameOfActivity
      * @Metod deletingActivityWithName
      */
+    @Step
     public void deletingActivityWithName(String nameOfActivity,String value) {
          selectSearchTypeDD(value);
         while (isActivityInList(nameOfActivity)) {
@@ -68,6 +69,7 @@ public class ActivityPage extends ParentPage {
      *              value="6" -Просроченные по офису
      * @Metod for DD
      */
+    @Step
     public void selectSearchTypeDD(String value) {
         webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));
         actionWithOurElement.selectValueInDD(typeOfViewModeActivityDD, value);
@@ -77,6 +79,7 @@ public class ActivityPage extends ParentPage {
      * Click on button Close for Close Activity
      * @Metod clickButtonActivityClose
      */
+    @Step
     public void clickButtonActivityClose() {
         actionWithOurElement.clickOnElement(buttonActivityClose);
     }
@@ -86,7 +89,7 @@ public class ActivityPage extends ParentPage {
      * @param nameOfActivity
      * @Metod clickOnActivity
      */
-
+    @Step
     public void clickOnActivity(String nameOfActivity) {
         webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));
         actionWithOurElement.clickOnElement(".//*[text()='" + nameOfActivity + "']");
@@ -98,6 +101,7 @@ public class ActivityPage extends ParentPage {
      * @return
      * @Metod isActivityInList
      */
+    @Step
     private boolean isActivityInList(String nameOfActivity) {
         return actionWithOurElement.isElementInList(".//*[text()='" + nameOfActivity + "']");
     }
@@ -108,6 +112,7 @@ public class ActivityPage extends ParentPage {
      * @return
      * @Metod isNewActivityAdded
      */
+    @Step
     public boolean isNewActivityAdded(String nameOfActivity) {
 
         return actionWithOurElement.isElementInList(".//*[text()='" + nameOfActivity + "']");
