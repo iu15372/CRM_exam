@@ -21,6 +21,7 @@ import java.util.Map;
 public class LoginPage extends ParentPage {
     HomePage homePage;
 
+
     @FindBy(name = "Login")
     private WebElement userNameImput;
 
@@ -33,9 +34,13 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//*[@id='loginform']")
     private WebElement isLoginForm;
 
+
+
     public LoginPage(WebDriver webDriver) {
+
         super(webDriver, "/User/Login?ReturnUrl=%2f");
         homePage = new HomePage(webDriver);
+
     }
 
     /**
@@ -93,6 +98,7 @@ public class LoginPage extends ParentPage {
             return false;
         }
     }
+
 
     /**
      * @param login    (ONLY Valid Login)

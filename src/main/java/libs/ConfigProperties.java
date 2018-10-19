@@ -8,6 +8,9 @@ public interface ConfigProperties extends Config {  //интерфейс , оп�
 	long TIME_FOR_EXPLICIT_WAIT_HIGHT();
 
 	String base_url();
+	String base_url_test();
+
+
 	String DATA_FILE();
 	String DATA_FILE_PATH();
 	String Oracle();

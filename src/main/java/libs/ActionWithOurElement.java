@@ -9,6 +9,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -139,6 +142,7 @@ public class ActionWithOurElement {
             printErrorAndStopTest(e);
         }
     }
+
     /**
      * @param dropDownElement
      * @param text
@@ -156,7 +160,7 @@ public class ActionWithOurElement {
         }
     }
 
-     /**
+    /**
      * @param webElement
      * @param neededState
      * @Metod setNeedeStateToCheckBox  - "check" or "uncheck"   CheckBox
@@ -232,19 +236,24 @@ public class ActionWithOurElement {
     }
 
     /**
-     * @Metod clearDate  - manual change date
      * @param webElement
-     * @param text
+     * @Metod clearDate  - manual change date
      */
     @Step
-    public void clearDate(WebElement webElement, String text) {
+    public String clearDate(WebElement webElement) {
+        Calendar c = new GregorianCalendar();
+        c.add(Calendar.DAY_OF_YEAR, 4);
+        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+        String date = format1.format(c.getTime());
         try {
             webElement.clear();
-            webElement.sendKeys(text);
-            logger.info(text + " was inputted into element Date");
-        }catch (Exception e){
+            webElement.sendKeys(date);
+            logger.info(date + " was inputted into element Date");
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+
+        return date;
     }
 
 

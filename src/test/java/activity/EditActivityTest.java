@@ -9,7 +9,6 @@ import java.io.IOException;
 
 public class EditActivityTest extends ParentTest {
     final String nameOfActivity = "editActivityTestDate";
-    final String dateOfActivity = " 06092018";
     final String valueSearchTypeDD = "2";
 
 
@@ -38,7 +37,7 @@ public class EditActivityTest extends ParentTest {
         activityPage.clickOnButtonCreate();
         createActivityPage.cheekCurrentUrl();
         createActivityPage.enterActivityInfoDescription(nameOfActivity);
-        createActivityPage.clickOnDateBegin(dateOfActivity);
+        createActivityPage.clickOnDateBegin();
         createActivityPage.clickButtonActivitySave();
         editActivityPage.clickOnMenuActivity();
         activityPage.selectSearchTypeDD(valueSearchTypeDD);

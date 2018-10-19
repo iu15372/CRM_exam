@@ -28,8 +28,10 @@ public class ParentPage {
 
     public ParentPage(WebDriver webDriver, String expectedUrl) {
         this.webDriver = webDriver;
+
         baseUrl = configProperties.base_url();
         this.expectedUrl = baseUrl + expectedUrl;
+
         PageFactory.initElements(webDriver, this);
         actionWithOurElement = new ActionWithOurElement(webDriver);
         utils = new Utils();

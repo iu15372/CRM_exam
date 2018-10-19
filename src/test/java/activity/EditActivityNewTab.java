@@ -13,7 +13,6 @@ import java.util.Set;
 
 public class EditActivityNewTab extends ParentTest {
     final String nameOfActivity = "editActivityTestDateNewTab";
-    final String dateOfActivity = " 19092018";
     final String valueSearchTypeDD = "2";
 
     WebDriverWait webDriverWait20;
@@ -25,11 +24,11 @@ public class EditActivityNewTab extends ParentTest {
         homePage.clickOnMenuActivity();
         activityPage.cheekCurrentUrl();
         activityPage.deletingActivityWithName(nameOfActivity, valueSearchTypeDD);
-        activityPage.deletingActivityWithName(nameOfActivity + dateOfActivity,valueSearchTypeDD);
+        activityPage.deletingActivityWithName(nameOfActivity + " edit",valueSearchTypeDD);
         activityPage.clickOnButtonCreate();
         createActivityPage.cheekCurrentUrl();
         createActivityPage.enterActivityInfoDescription(nameOfActivity);
-        createActivityPage.clickOnDateBegin(dateOfActivity);
+        createActivityPage.clickOnDateBegin();
         createActivityPage.clickButtonActivitySave();
         editActivityPage.clickOnMenuActivity();
         activityPage.selectSearchTypeDD("2");
@@ -37,19 +36,19 @@ public class EditActivityNewTab extends ParentTest {
         String paretnHandle = webDriver.getWindowHandle();
         activityPage.clickOnButtonEdit();
 
-        editActivityPage.enterActivityInfoDescription(dateOfActivity);
+        editActivityPage.enterActivityInfoDescription(" edit");
         editActivityPage.clickButtonActivitySaveAndClose();
         webDriver.switchTo().window(paretnHandle);
         activityPage.cheekCurrentUrl();
 
         checkAC("New Activity wasn't added",
-                activityPage.isNewActivityAdded(nameOfActivity + dateOfActivity),
+                activityPage.isNewActivityAdded(nameOfActivity + " edit"),
                 true);
     }
 
     @After
     public void deletingNewActivityw() {
-        activityPage.deletingActivityWithName(nameOfActivity + dateOfActivity, valueSearchTypeDD);
+        activityPage.deletingActivityWithName(nameOfActivity + " edit", valueSearchTypeDD);
 
     }
 }
