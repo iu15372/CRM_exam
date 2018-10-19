@@ -15,8 +15,11 @@ public class LoginTest extends ParentTest {
         loginPage.enterLogin("МенеджерМенеджер");
         loginPage.enterPass("111");
         loginPage.clickOnSubmitButton();
+        homePage.cheekCurrentUrl();
 
-        checkAC("Url is not valid", webDriver.getCurrentUrl() == "https://crm.poehalisnami.ua", false);
+        checkAC("Url is not valid", webDriver.getCurrentUrl()==homePage.getCurrentUrl(), false);  /// как сделать проверку
+        System.out.println(webDriver.getCurrentUrl() + " = " +  homePage.getCurrentUrl());
+
         checkAC("User-Name is not  present", homePage.isUserNamePresent(), true);
         checkAC("Login box is  presen", loginPage.isLoginForm(), false);
     }
@@ -33,7 +36,7 @@ public class LoginTest extends ParentTest {
 
         checkAC("User-Name is  present", homePage.isUserNamePresent(), false);
         checkAC("Url is not correct", webDriver.getCurrentUrl() == "https://crm.poehalisnami.ua/User/Login?ReturnUrl=%2f", false);
-
+        System.out.println(webDriver.getCurrentUrl());
 
 
     }

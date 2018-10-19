@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import libs.Utils;
+
 public class CreateActivityPage extends ParentPage{
 
     @FindBy(xpath = ".//*[@id='btnActivitySave']")
@@ -46,10 +48,11 @@ public class CreateActivityPage extends ParentPage{
 
     /**
      * @Metod clickOnDateBegin - enter a DateBegin for Activity
-     * @param text
+     *
      */
-    public void clickOnDateBegin (String text){
-        actionWithOurElement.clearDate(activityDateBegin,text);
+    public void clickOnDateBegin (){
+        actionWithOurElement.clearDate(activityDateBegin);
+
 
     }
 

@@ -4,12 +4,13 @@ import org.junit.After;
 import org.junit.Test;
 import parentTest.ParentTest;
 
+
 import java.io.IOException;
 
 public class AddNewActivity extends ParentTest {
     final String nameOfActivity = "addNewActivity";
-    final String dateOfActivity = " 06092018";
     final String valueSearchTypeDD = "2";
+
 
 
     /**
@@ -17,7 +18,6 @@ public class AddNewActivity extends ParentTest {
      * @userValidLogInExcel(_,_)
      * "login_R.O","pass_R.O"  - руководитель офиса
      * "login_Men","pass_Men"  - менеджер
-     * dateOfActivity  - ставить дату в формате 8 цифр (ддммгггг), !!! дата больше текущей
      *  valueSearchTypeDD value="1" -На сегодня
      *                    value="2" -Будущие действия
      *                    value="4" -Закрытые действия
@@ -26,7 +26,8 @@ public class AddNewActivity extends ParentTest {
      */
     @Test
     public void addNewActivity() throws IOException {
-        loginPage.userValidLogInExcel("login_Men", "pass_Men");
+        //loginPage.userValidLogInExcel("login_Men", "pass_Men");
+        loginPage.userValidLogInExcel("login_R.O", "pass_R.O");
         homePage.cheekCurrentUrl();
         homePage.clickOnMenuActivity();
         activityPage.cheekCurrentUrl();
@@ -34,7 +35,7 @@ public class AddNewActivity extends ParentTest {
         activityPage.clickOnButtonCreate();
         createActivityPage.cheekCurrentUrl();
         createActivityPage.enterActivityInfoDescription(nameOfActivity);
-        createActivityPage.clickOnDateBegin(dateOfActivity);
+        createActivityPage.clickOnDateBegin();
         createActivityPage.clickButtonActivitySave();
         editActivityPage.clickOnMenuActivity();
         activityPage.cheekCurrentUrl();
