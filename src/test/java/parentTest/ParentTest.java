@@ -2,7 +2,6 @@ package parentTest;
 
 import io.qameta.allure.Step;
 import libs.ConfigProperties;
-import libs.Utils;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.After;
@@ -51,7 +50,9 @@ public class ParentTest {
         activityPage = new ActivityPage(webDriver);
         createActivityPage = new CreateActivityPage(webDriver);
         editActivityPage = new EditActivityPage(webDriver);
-
+        opportunitystagePage = new OpportunitystagePage(webDriver);
+        createTouristPage = new CreateTouristPage(webDriver);
+        touristPage = new TouristPage(webDriver);
 
 
     }
@@ -89,6 +90,7 @@ public class ParentTest {
     public void tearDown() {
         webDriver.quit();
     }
+
     @Step
     protected void checkAC(String message, boolean actual, boolean expected) {
         if (actual != expected) {
