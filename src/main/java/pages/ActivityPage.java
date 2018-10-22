@@ -133,7 +133,7 @@ public class ActivityPage extends ParentPage {
      */
     @Step
     public void clickOnButtonEdit() {
-        String paretnHandle = webDriver.getWindowHandle();
+      //  String paretnHandle = webDriver.getWindowHandle();
         actionWithOurElement.clickOnElement(buttonActivityEdit);
         for (String winHandle : webDriver.getWindowHandles()) {
             webDriver.switchTo().window(winHandle);
