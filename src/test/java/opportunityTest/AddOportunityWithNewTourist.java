@@ -51,6 +51,8 @@ public class AddOportunityWithNewTourist {
         webDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
         webDriverWait20 = new WebDriverWait(webDriver, 20);
+
+
     }
 
     /**
@@ -76,27 +78,89 @@ public class AddOportunityWithNewTourist {
         System.out.println("Текущие время: " + time);
 
         webDriver.findElement(By.xpath(".//*[@id='LeadInfo_Phone']")).sendKeys(leadInfoPhone + time);  //ввод Телефон*
-        logger.info(leadInfoPhone+time+ " was inputted into element");
+        logger.info(leadInfoPhone + time + " was inputted into element");
 
         webDriverWait20.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@id='LeadInfo_ContactSexId']/option[2]")));  // wait
         webDriver.findElement(By.xpath(".//*[@id='LeadInfo_ContactSexId']/option[2]")).click();  // выбор Пол*
-        logger.info("Пол выбран" + " isDisplayed and click");
+        logger.info("Пол выбран");
 
         webDriver.findElement(By.xpath(".//*[@id='LeadInfo_ContactSourceId']/option[2]")).click();  // выбор Источник запроса*
-        logger.info("Источник запроса - выбран" + " isDisplayed and click");
+        logger.info("Источник запроса - выбран");
 
-        webDriverWait20.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='btn-ok']"))); // wait
+
+        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='communication-loader-show']"))));// wait
         webDriver.findElement(By.xpath(".//*[@class='btn-ok']")).click();  // нажатие на кнопку "Ок"
-        logger.info("submit-but" + " was click");
+        logger.info("OK was click");
+
+        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='communication-loader-show']"))));// wait
+        logger.info(webDriver.getTitle());
 
 
+        // Этап "Подбор тура"
+        webDriver.findElement(By.xpath(".//*[@id='tab_opportunity']//*[@data-stage-state='2']")).click();
+        logger.info("Подбор тура click");
+
+        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='communication-loader-show']"))));// wait
+        webDriver.findElement(By.xpath(".//*[@id='hotelClassList']/div/div[2]/div[1]/label/span[1]/i")).click();
+        logger.info("isSelected Любой Отель click");
+
+        webDriver.findElement(By.xpath(".//*[@id='live-search-start']")).click();
+        logger.info("button Найти тур click");
+
+        webDriverWait20.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@id='live-search-data-result']/div[1]/div[1]/div[2]")));  // wait
+        webDriver.findElement(By.xpath(".//*[@id='live-search-data-result']/div[1]/div[1]/div[2]")).click();
+        logger.info("click on 1-st hotel");
+
+        webDriver.findElement(By.xpath(".//*[@id='live-search-data-result']/div[1]//div[2]//table[@class='live-search-details']//tr[2]//td//a[2]")).click();
+        logger.info("Оформить click");
+
+        webDriver.findElement(By.xpath(".//*[@id='xtend-modal-container-ok']")).click();
+        logger.info("Подтверждение действия click  OK");
+
+
+
+        // Этап "Подписание договора"
+
+
+
+
+
+
+
+
+
+
+//        // Delete tourist param - firstName
+//        webDriver.get("https://crm.poehalisnami.ua/tourist/list");
+//        logger.info("baseUrl open");
+//
+//        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));  // wait
+//        webDriver.findElement(By.xpath(".//*[text()='" + firstNamey + "']")).click();
+//        logger.info(firstNamey + " click");
+//        webDriver.findElement(By.xpath(".//*[@id='btnContactDelete']")).click();
+//        logger.info("Delete  click");
+//
+//        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));  // wait
+//        logger.info(webDriver.getTitle());
+//
+//        webDriver.findElement(By.xpath(".//*[@id='submit-but']/input[@value='Да']")).click();  // это не аллерт!!! (подтверждение удаления туриста)
+//        logger.info("Delete  OK");
+//
+//        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));  // wait
+
+    }
+
+    @After
+
+
+    public void tearDown() {
         // Delete tourist param - firstName
         webDriver.get("https://crm.poehalisnami.ua/tourist/list");
-        logger.info("baseUrl");
+        logger.info("baseUrl open");
 
         webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));  // wait
-        webDriver.findElement(By.xpath(".//*[text()='NewTourist']")).click();
-        logger.info("NewTourist click");
+        webDriver.findElement(By.xpath(".//*[text()='" + firstNamey + "']")).click();
+        logger.info(firstNamey + " click");
         webDriver.findElement(By.xpath(".//*[@id='btnContactDelete']")).click();
         logger.info("Delete  click");
 
@@ -108,13 +172,10 @@ public class AddOportunityWithNewTourist {
 
         webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));  // wait
 
-    }
 
-    @After
-    public void tearDown() {
+
         webDriver.quit();
     }
-
 
 
 }
