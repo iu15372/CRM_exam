@@ -31,7 +31,7 @@ public class AddOportunityWithOldTourist {
 
     String browser = System.getProperty("browser");
 
-    final String firstNamey = "NewTourist";
+    final String firstNamey = "NewTouristt";
     final String leadInfoPhone = "0351";
 
 
@@ -66,111 +66,90 @@ public class AddOportunityWithOldTourist {
         webDriver.findElement(By.xpath(".//*[@id='signin_submit']")).click();
 
 
-        //поиск туриста
-        webDriver.get("https://crm.poehalisnami.ua/tourist/list");
+        /**
+         *  поиск клиентa
+         */
 
+        webDriver.get("https://crm.poehalisnami.ua/tourist/list");  // open page "Список клиентов"
+        logger.info(webDriver.getTitle());
+        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='communication-loader-show']"))));// wait
+        webDriverWait20.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@key='btnDown']")));// wait
         webDriver.findElement(By.xpath(".//*[@key='btnDown']")).click();  //  расскрытие поиска
         logger.info("click to btnDown");
         webDriver.findElement(By.xpath(".//*[@placeholder='Имя']")).sendKeys(firstNamey);//ввод Имени* в поиск
-        logger.info("sendKeys" + firstNamey);
+        logger.info("sendKeys " + firstNamey);
         webDriver.findElement(By.xpath(".//*[@class='lupa']")).click();    //клик по Лупе
         logger.info("click to  lupa");
-        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='communication-loader-show']"))));// wait
+       // webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='communication-loader-show']"))));// wait
+         webDriverWait20.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class=\"ui-jqgrid-btable ui-common-table\"]//tr[2]")));
 
-//        webDriver.findElement(By.xpath(".//*[@class=\"ui-jqgrid-btable ui-common-table\"]//tr[2]")).click(); // клик по первому туристу в таблице (из тех что найдены)
-//        logger.info("click on 1-st  in table" + firstNamey);
         Actions actions = new Actions(webDriver);
-        actions.contextClick(webDriver.findElement(By.xpath(".//*[@class=\"ui-jqgrid-btable ui-common-table\"]//tr[2]")));
-        logger.info("click on 1-st  in table" + firstNamey);
-
+        actions.contextClick(webDriver.findElement(By.xpath(".//*[@class=\"ui-jqgrid-btable ui-common-table\"]//tr[2]")));  // вызов меню правой кнопки
         actions.build().perform();
-        logger.info( firstNamey);
-        webDriver.findElement(By.xpath("html/body/div[9]/ul/li[1]/div")).click();
-        logger.info( "click RС");
+        logger.info("click on 1-st  in table " + firstNamey);
 
 
+        webDriver.findElement(By.xpath("html/body/div[9]/ul/li[1]/div")).click();  // выбор из меню правой кнопки "Редактировать туриста"
+        logger.info("click RС and open new tab " + webDriver.getTitle());
+        /**
+         *  Этап "Выявление потребностей"
+         */
+        webDriver.findElement(By.xpath(".//*[@id='btnContactsCreateOpportunityNew']")).click(); // Create new  Opportunity
+        logger.info("Open popup-modal Выявление потребностей");
+
+        webDriver.findElement(By.xpath(".//*[@id='LeadInfo_ContactSourceId']/option[2]")).click();  // выбор Источник запроса*
+        logger.info("Источник запроса - выбран");
+
+        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='communication-loader-show']"))));// wait
+        webDriver.findElement(By.xpath(".//*[@class='btn-ok']")).click();  // нажатие на кнопку "Ок"
+        logger.info("OK was click and close  popup-modal 'Выявление потребностей' ");
+        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='communication-loader-show']"))));// wait
+        /**
+         *  Этап "Побдор Тура"
+         */
+
+        webDriver.findElement(By.xpath(".//*[@id='tab_opportunity']//*[@data-stage-state='2']")).click();
+        logger.info("Подбор тура click");
+
+        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='communication-loader-show']"))));// wait
+        webDriver.findElement(By.xpath(".//*[@id='hotelClassList']/div/div[2]/div[1]/label/span[1]/i")).click();  // click on checkbox "Любой отель*"
+        logger.info("checkbox \"Любой Отель\" click");
+
+        webDriver.findElement(By.xpath(".//*[@id='live-search-start']")).click();
+        logger.info("button Найти тур click");
+
+        webDriverWait20.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@id='live-search-data-result']/div[1]/div[1]/div[2]")));  // wait
+        webDriver.findElement(By.xpath(".//*[@id='live-search-data-result']/div[1]/div[1]/div[2]")).click();
+        logger.info("click on 1-st hotel");
+
+        webDriverWait20.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='live-search-data-result']/div[1]//div[2]//table[@class='live-search-details']//tr[2]//td//a[2]")));  // wait
+        webDriver.findElement(By.xpath(".//*[@id='live-search-data-result']/div[1]//div[2]//table[@class='live-search-details']//tr[2]//td//a[2]")).click();
+        logger.info("Оформить click");
+
+        webDriver.findElement(By.xpath(".//*[@id='xtend-modal-container-ok']")).click();
+        logger.info("Подтверждение действия click  OK");
+        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='communication-loader-show']"))));// wait
+        /**
+         *  Этап "Подписание договора"
+         */
+        if ( !webDriver.findElement(By.xpath("//input[contains(@id, 'StageData_IsAgreementReady')]")).isSelected() )
+        {
+            webDriver.findElement(By.xpath("//input[contains(@id, 'StageData_IsAgreementReady')]")).isSelected();
+        }
 
 
+       // webDriver.findElement(By.xpath("//input[contains(@id, 'StageData_IsAgreementReady')]")).isSelected();
 
 
+        //webDriver.findElement(By.xpath(".//*[text()='Договор подписан']")).click(); //click on checkbox Договор подписан
+        logger.info("checkbox \"Договор подписан\" checked ");
 
+        webDriver.findElement(By.xpath(".//*[@id='OpportunityInfo_Prepayment']")).sendKeys("100");  // input "Сумма предоплаты"
+        logger.info("\"Сумма предоплаты\" = 100 ");
 
+        webDriver.findElement(By.xpath(".//*[@id='btnOk']")).click();  // этап "Подписание договора" пройден
+        logger.info("click on btn \"OK\" in \'Подписание договора\' ");
 
-
-
-
-
-        // webDriver.get("https://crm.poehalisnami.ua/tourist/create?oo=1&nw");
-
-        // Этап "Выявление потребностей"
-//        webDriver.findElement(By.xpath(".//*[@id='LeadInfo_FirstName']")).sendKeys(firstNamey);  // ввод Имени*
-//
-//
-//        Date time = new Date();
-//        SimpleDateFormat format = new SimpleDateFormat("hhMMss");
-//        System.out.println("Текущие время: " + time);
-//
-//        webDriver.findElement(By.xpath(".//*[@id='LeadInfo_Phone']")).sendKeys(leadInfoPhone + time);  //ввод Телефон*
-//        logger.info(leadInfoPhone + time + " was inputted into element");
-//
-//        webDriverWait20.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@id='LeadInfo_ContactSexId']/option[2]")));  // wait
-//        webDriver.findElement(By.xpath(".//*[@id='LeadInfo_ContactSexId']/option[2]")).click();  // выбор Пол*
-//        logger.info("Пол выбран");
-//
-//        webDriver.findElement(By.xpath(".//*[@id='LeadInfo_ContactSourceId']/option[2]")).click();  // выбор Источник запроса*
-//        logger.info("Источник запроса - выбран");
-//
-//
-//        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='communication-loader-show']"))));// wait
-//        webDriver.findElement(By.xpath(".//*[@class='btn-ok']")).click();  // нажатие на кнопку "Ок"
-//        logger.info("OK was click");
-//
-//        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='communication-loader-show']"))));// wait
-//        logger.info(webDriver.getTitle());
-
-
-        // Этап "Подбор тура"
-//        webDriver.findElement(By.xpath(".//*[@id='tab_opportunity']//*[@data-stage-state='2']")).click();
-//        logger.info("Подбор тура click");
-//
-//        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='communication-loader-show']"))));// wait
-//        webDriver.findElement(By.xpath(".//*[@id='hotelClassList']/div/div[2]/div[1]/label/span[1]/i")).click();
-//        logger.info("isSelected Любой Отель click");
-//
-//        webDriver.findElement(By.xpath(".//*[@id='live-search-start']")).click();
-//        logger.info("button Найти тур click");
-//
-//        webDriverWait20.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@id='live-search-data-result']/div[1]/div[1]/div[2]")));  // wait
-//        webDriver.findElement(By.xpath(".//*[@id='live-search-data-result']/div[1]/div[1]/div[2]")).click();
-//        logger.info("click on 1-st hotel");
-//
-//        webDriver.findElement(By.xpath(".//*[@id='live-search-data-result']/div[1]//div[2]//table[@class='live-search-details']//tr[2]//td//a[2]")).click();
-//        logger.info("Оформить click");
-//
-//        webDriver.findElement(By.xpath(".//*[@id='xtend-modal-container-ok']")).click();
-//        logger.info("Подтверждение действия click  OK");
-
-
-        // Этап "Подписание договора"
-
-
-//        // Delete tourist param - firstName
-//        webDriver.get("https://crm.poehalisnami.ua/tourist/list");
-//        logger.info("baseUrl open");
-//
-//        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));  // wait
-//        webDriver.findElement(By.xpath(".//*[text()='" + firstNamey + "']")).click();
-//        logger.info(firstNamey + " click");
-//        webDriver.findElement(By.xpath(".//*[@id='btnContactDelete']")).click();
-//        logger.info("Delete  click");
-//
-//        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));  // wait
-//        logger.info(webDriver.getTitle());
-//
-//        webDriver.findElement(By.xpath(".//*[@id='submit-but']/input[@value='Да']")).click();  // это не аллерт!!! (подтверждение удаления туриста)
-//        logger.info("Delete  OK");
-//
-//        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));  // wait
 
     }
 
@@ -178,25 +157,6 @@ public class AddOportunityWithOldTourist {
 
 
     public void tearDown() {
-        // Delete tourist param - firstName
-//        webDriver.get("https://crm.poehalisnami.ua/tourist/list");
-//        logger.info("baseUrl open");
-//
-//        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));  // wait
-//        webDriver.findElement(By.xpath(".//*[text()='" + firstNamey + "']")).click();
-//        logger.info(firstNamey + " click");
-//        webDriver.findElement(By.xpath(".//*[@id='btnContactDelete']")).click();
-//        logger.info("Delete  click");
-//
-//        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));  // wait
-//        logger.info(webDriver.getTitle());
-//
-//        webDriver.findElement(By.xpath(".//*[@id='submit-but']/input[@value='Да']")).click();  // это не аллерт!!! (подтверждение удаления туриста)
-//        logger.info("Delete  OK");
-//
-//        webDriverWait20.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='loading ui-state-default ui-state-active']"))));  // wait
-
-
         webDriver.quit();
     }
 }
